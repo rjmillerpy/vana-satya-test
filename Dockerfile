@@ -18,9 +18,4 @@ COPY . /app
 # Install any needed Python packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-RUN git clone https://github.com/mesonbuild/meson.git && \
-    cd meson && \
-    git checkout 187ef425f96b9ba091edce56e9491373c51b2a34 && \
-    python3 -m pip install --upgrade .
-
 CMD ["python", "-m", "my_proof"]
