@@ -8,6 +8,12 @@ RUN apt-get update && apt-get install -y \
     ninja-build \
     && apt-get clean
 
+# Install Meson from the specific commit
+RUN git clone https://github.com/mesonbuild/meson.git && \
+    cd meson && \
+    git checkout 187ef425f96b9ba091edce56e9491373c51b2a34 && \
+    python3 -m pip install --upgrade .
+
 # Create required directories
 RUN mkdir /sealed && chmod 777 /sealed
 
