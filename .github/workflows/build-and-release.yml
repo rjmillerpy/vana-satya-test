@@ -22,19 +22,6 @@ jobs:
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
-    
-    - name: Set up Meson (specific commit)
-      run: |
-        # Clone the Meson repository
-        git clone https://github.com/mesonbuild/meson.git
-        cd meson
-        # Check out the specific commit
-        git checkout 187ef425f96b9ba091edce56e9491373c51b2a34
-        # Install Meson
-        python3 -m pip install --upgrade .
-    
-    - name: Verify Meson Version
-      run: meson --version
 
     - name: Build Docker image
       uses: docker/build-push-action@v4
@@ -49,7 +36,7 @@ jobs:
 
     - name: Clone and set up GSC
       run: |
-        git clone https://github.com/gramineproject/gsc.git
+        git clone -b adarsh/new-sgx-driver https://github.com/adarshan-intel/gsc.git
         cd gsc
         python3 -m pip install --no-cache-dir 'docker>=7.1.0' 'jinja2>=3.1.4' 'tomli>=2.0.1' 'tomli-w>=1.0.0' 'pyyaml>=6.0.2'
 
